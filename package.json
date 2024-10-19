@@ -46,13 +46,14 @@
       ">0.2%",
       "not dead",
       "not op_mini all"
-    ],"homepage": "https://bawkh.github.io/portfolio/",
+    ],
     "development": [
       "last 1 chrome version",
       "last 1 firefox version",
       "last 1 safari version"
     ]
   },
+  "homepage": "https://bawkh.github.io/portfolio",
   "devDependencies": {
     "gh-pages": "^6.2.0"
   }
