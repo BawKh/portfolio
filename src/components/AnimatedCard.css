@@ -1,0 +1,28 @@
+.card-container {
+    position: relative;
+    perspective: 1000px; /* Gives a 3D effect */
+  }
+  
+  .card-container:hover {
+    cursor: pointer;
+  }
+  
+
+  /* Pop-out effect */
+  .pop-out {
+    animation: pop-out 0.5s forwards;
+  }
+  
+  @keyframes pop-out {
+    0% {
+        opacity: 0;
+}
+    100% {
+        opacity: 1;
+
+    }
+  }
+  
+.Animated-btn {
+display: none !important;
+}

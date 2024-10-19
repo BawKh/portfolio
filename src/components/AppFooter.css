@@ -1,0 +1,26 @@
+
+  
+  .footer h5 {
+    font-size: 18px;
+    font-weight: bold;
+  }
+  
+  .footer p {
+    font-size: 14px;
+  }
+  
+  .footer a {
+    text-decoration: none;
+ /* Dark gray links */
+  }
+  
+  .footer a:hover {
+    text-decoration: none;
+
+  }
+  
+  .social-icons a {
+    color: #343a40; /* Dark gray for icons */
+    transition: color 0.3s ease;
+  }
+  
