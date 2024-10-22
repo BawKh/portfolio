@@ -14,14 +14,36 @@ const ContactForm = () => {
 
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [error, setError] = useState(false);
+  const [emailExists, setEmailExists] = useState(null);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleSubmit = (e) => {
+  const verifyEmail = async (email) => {
+    try {
+      const response = await fetch(
+        `https://api.hunter.io/v2/email-verifier?email=${email}&api_key=f04c0beffab7545ad076eb7c2c599b99dab0b471`
+      );
+      const data = await response.json();
+      return data.data.status === "valid";
+    } catch (error) {
+      console.error("Email verification failed", error);
+      return false;
+    }
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
+
+    const emailValid = await verifyEmail(formData.email);
+    setEmailExists(emailValid);
+
+    if (!emailValid) {
+      setError(true);
+      return;
+    }
 
     // Send the email using EmailJS
     emailjs
@@ -73,6 +95,7 @@ const ContactForm = () => {
           value={formData.name} // Bind value to state
           onChange={handleInputChange} // Handle input change
           required
+          pattern="^[a-zA-Z\s]+$" // Regex for name validation (letters and spaces only)
           style={{
             backgroundColor: "transparent",
             borderBottom: "2px solid #17a2b8",
@@ -98,12 +121,17 @@ const ContactForm = () => {
           onChange={handleInputChange} // Handle input change
           required
           type="email" // Ensure valid email input
+          pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" // Regex for email validation
           style={{
             backgroundColor: "transparent",
             borderBottom: "2px solid #17a2b8",
           }}
         />
       </InputGroup>
+
+      {emailExists === false && (
+        <p className="text-danger">Email address does not exist.</p>
+      )}
 
       <InputGroup className="mb-3" style={{ height: "70px" }}>
         <InputGroup.Text
@@ -123,6 +151,9 @@ const ContactForm = () => {
           onChange={handleInputChange} // Handle input change
           required
           type="tel" // Ensure valid telephone input
+          pattern="^\d{11}$" // Regex for telephone validation (exactly 11 digits)
+          maxLength="11" // Maximum length of 11 characters
+          minLength="11" // Minimum length of 11 characters
           style={{
             backgroundColor: "transparent",
             borderBottom: "2px solid #17a2b8",
@@ -147,6 +178,7 @@ const ContactForm = () => {
           value={formData.subject} // Bind value to state
           onChange={handleInputChange} // Handle input change
           required
+          pattern="^[a-zA-Z0-9\s]+$" // Regex for subject validation (letters, numbers, and spaces only)
           style={{
             backgroundColor: "transparent",
             borderBottom: "2px solid #17a2b8",
@@ -176,15 +208,11 @@ const ContactForm = () => {
           value={formData.message} // Bind value to state
           onChange={handleInputChange} // Handle input change
           required
+          pattern="^[a-zA-Z0-9\s.,!?'-]+$" // Regex for message validation (letters, numbers, spaces, and common punctuation)
         />
       </InputGroup>
 
-      <Button
-        variant="secondary"
-        className="p-2 fw-bold w-100"
-        // style={{ width: "80px" }}
-        type="submit"
-      >
+      <Button variant="secondary" className="p-2 fw-bold w-100" type="submit">
         Send
       </Button>
 
