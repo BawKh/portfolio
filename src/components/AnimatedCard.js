@@ -27,13 +27,13 @@ function AnimatedCard({ portfolioImages, projects }) {
           ref={ref}
           className={`card-container ${
             popped ? "Animated-btn" : ""
-          } rounded  p-3 justify-content-center w-100 h-100`}
+          } rounded   justify-content-center w-100 h-100`}
           style={{ rowGap: "20px" }} // Trigger the pop-out effect on click
         >
           {projects &&
             projects.map((project, index) => {
               return (
-                <Col xs="4" key={`card_${index}`}>
+                <Col xs="12" md="6" lg="4" key={`card_${index}`}>
                   <AppCard
                     title={project.name}
                     repo={project.html_url}

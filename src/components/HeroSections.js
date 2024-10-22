@@ -1,7 +1,6 @@
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import { Link } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import Image from "react-bootstrap/Image";
 import Resume from "../folders/Resume.pdf";
@@ -21,7 +20,12 @@ function HeroSections() {
     <div className="HeroInfo pt-5" id="#HeroSection">
       <Container>
         <Row>
-          <Col xs="6" className="align-self-center  mt-5 ps-3" style={{}}>
+          <Col
+            xs="12"
+            sm="6"
+            className="align-self-center  mt-5 ps-3"
+            style={{}}
+          >
             <div className="p-3 h-75">
               <div className=" text-info fw-bold">
                 Hi , I’m <h1 style={{ color: "darkblue" }}>Basel W.Khial</h1>
@@ -65,14 +69,9 @@ function HeroSections() {
               </a>
             </Row>
           </Col>
-          <Col xs="6" className="align-self-center">
+          <Col sm="6" className="align-self-center d-none d-sm-block">
             <Row className="logoCapture mx-auto overflow-hidden">
-              <Image
-                src={MyImg}
-                alt="MyImg"
-                className="w-100 h-100 "
-                style={{ width: "600px" }}
-              />
+              <Image src={MyImg} alt="MyImg" className="w-100 h-100 " />
             </Row>
           </Col>
         </Row>

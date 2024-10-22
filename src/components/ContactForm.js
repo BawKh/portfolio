@@ -1,6 +1,5 @@
 import React from "react";
 import { Form, Button, InputGroup } from "react-bootstrap";
-import Img from "../images/welcomeBg.webp";
 import { useState } from "react";
 import emailjs from "emailjs-com";
 
@@ -8,6 +7,8 @@ const ContactForm = () => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
+    telephone: "",
+    subject: "",
     message: "",
   });
 
@@ -35,7 +36,13 @@ const ContactForm = () => {
           console.log("SUCCESS!", response.status, response.text);
           setIsSubmitted(true);
           setError(false);
-          setFormData({ name: "", email: "", message: "" });
+          setFormData({
+            name: "",
+            email: "",
+            telephone: "",
+            subject: "",
+            message: "",
+          });
         },
         (err) => {
           console.error("FAILED...", err);
@@ -46,14 +53,13 @@ const ContactForm = () => {
 
   return (
     <Form
-      className="rounded-1 text-light p-3 w-100"
-      style={{ backgroundImage: `url(${Img})` }}
+      className="rounded-1 text-secondary p-3 w-100 pt-3"
       onSubmit={handleSubmit} // Attach submit handler
     >
-      <InputGroup className="mb-3 shadow-sm" style={{ height: "50px" }}>
+      <InputGroup className="mb-3 shadow-sm" style={{ height: "70px" }}>
         <InputGroup.Text
           id="basic-name"
-          className="border-secondary text-light"
+          className="border-secondary text-light bg-secondary"
           style={{ backgroundColor: "transparent" }}
         >
           Name
@@ -62,19 +68,22 @@ const ContactForm = () => {
           placeholder="Enter Your Name..."
           aria-label="Username"
           aria-describedby="basic-name"
-          className="border-secondary text-light shadow-none"
+          className="border-secondary text-secondary shadow-none"
           name="name" // Name should match the field in formData
           value={formData.name} // Bind value to state
           onChange={handleInputChange} // Handle input change
           required
-          style={{ backgroundColor: "transparent" }}
+          style={{
+            backgroundColor: "transparent",
+            borderBottom: "2px solid #17a2b8",
+          }}
         />
       </InputGroup>
 
-      <InputGroup className="mb-3" style={{ height: "50px" }}>
+      <InputGroup className="mb-3" style={{ height: "70px" }}>
         <InputGroup.Text
           id="basic-email"
-          className="border-secondary text-light"
+          className="border-secondary text-light bg-secondary"
           style={{ backgroundColor: "transparent" }}
         >
           Email
@@ -83,29 +92,86 @@ const ContactForm = () => {
           placeholder="Your Email"
           aria-label="UserEmail"
           aria-describedby="basic-email"
-          className="border-secondary text-light shadow-none"
+          className="border-secondary text-secondary shadow-none"
           name="email" // Name should match the field in formData
           value={formData.email} // Bind value to state
           onChange={handleInputChange} // Handle input change
           required
           type="email" // Ensure valid email input
+          style={{
+            backgroundColor: "transparent",
+            borderBottom: "2px solid #17a2b8",
+          }}
+        />
+      </InputGroup>
+
+      <InputGroup className="mb-3" style={{ height: "70px" }}>
+        <InputGroup.Text
+          id="basic-telephone"
+          className="border-secondary  text-light bg-secondary"
           style={{ backgroundColor: "transparent" }}
+        >
+          Telephone
+        </InputGroup.Text>
+        <Form.Control
+          placeholder="Your Telephone"
+          aria-label="UserTelephone"
+          aria-describedby="basic-telephone"
+          className="border-secondary text-secondary shadow-none"
+          name="telephone" // Name should match the field in formData
+          value={formData.telephone} // Bind value to state
+          onChange={handleInputChange} // Handle input change
+          required
+          type="tel" // Ensure valid telephone input
+          style={{
+            backgroundColor: "transparent",
+            borderBottom: "2px solid #17a2b8",
+          }}
+        />
+      </InputGroup>
+
+      <InputGroup className="mb-3" style={{ height: "70px" }}>
+        <InputGroup.Text
+          id="basic-subject"
+          className="border-secondary text-light bg-secondary"
+          style={{ backgroundColor: "transparent" }}
+        >
+          Subject
+        </InputGroup.Text>
+        <Form.Control
+          placeholder="Subject"
+          aria-label="UserSubject"
+          aria-describedby="basic-subject"
+          className="border-secondary text-secondary shadow-none"
+          name="subject" // Name should match the field in formData
+          value={formData.subject} // Bind value to state
+          onChange={handleInputChange} // Handle input change
+          required
+          style={{
+            backgroundColor: "transparent",
+            borderBottom: "2px solid #17a2b8",
+          }}
         />
       </InputGroup>
 
       <InputGroup className="mb-3">
         <InputGroup.Text
-          className="border-secondary text-light"
+          className="border-secondary  text-light bg-secondary"
           style={{ backgroundColor: "transparent" }}
         >
           Message
         </InputGroup.Text>
         <Form.Control
           as="textarea"
-          rows={5}
+          rows={10}
+          placeholder="Enter Your Message..."
           aria-label="With textarea"
-          className="border-secondary text-light shadow-none"
-          style={{ resize: "none", backgroundColor: "transparent" }}
+          className="border-secondary text-secondary shadow-none"
+          style={{
+            resize: "none",
+            backgroundColor: "transparent",
+            borderBottom: "2px solid #17a2b8",
+          }}
           name="message" // Name should match the field in formData
           value={formData.message} // Bind value to state
           onChange={handleInputChange} // Handle input change
@@ -114,9 +180,9 @@ const ContactForm = () => {
       </InputGroup>
 
       <Button
-        variant="outline-light"
-        className="p-2 fw-bold"
-        style={{ width: "80px" }}
+        variant="secondary"
+        className="p-2 fw-bold w-100"
+        // style={{ width: "80px" }}
         type="submit"
       >
         Send

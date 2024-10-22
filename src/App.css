@@ -1,6 +1,6 @@
 .App {
   text-align: center;
-
+  overflow: hidden;
 }
 
 .App-logo {
@@ -46,8 +46,8 @@
 }
 
 .logoCapture {
-  width: 400px;
-  height: 400px;
+  width: 80%;
+  height: 80%;
   background-color: white;
   border-radius: 50%;
   -webkit-border-radius: 50%;
@@ -164,3 +164,13 @@
 
 
 
+form {
+  & input::placeholder {
+    color: gray !important; /* Tomato color */
+    opacity: 1; /* Fully opaque */
+  }
+  & textarea::placeholder {
+    color: gray !important; /* Tomato color */
+    opacity: 1; /* Fully opaque */
+  }
+}

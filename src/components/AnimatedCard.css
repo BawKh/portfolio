@@ -2,7 +2,6 @@
     position: relative;
     perspective: 1000px; /* Gives a 3D effect */
   }
-  
   .card-container:hover {
     cursor: pointer;
   }
@@ -25,4 +24,5 @@
   
 .Animated-btn {
 display: none !important;
+
 }

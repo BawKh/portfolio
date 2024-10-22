@@ -24,7 +24,7 @@ function Portfolio() {
   return (
     <Container
       id="Projects"
-      className="p-5 m-5"
+      className="py-5 my-5"
       style={{ height: "auto", overflow: "hidden" }}
     >
       <div className="head">

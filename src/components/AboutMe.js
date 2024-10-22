@@ -5,9 +5,9 @@ import Image from "react-bootstrap/Image";
 import MyImg from "../images/basel-formal.png";
 function AboutMe() {
   return (
-    <Container className="py-5 my-5" style={{ height: "70vh" }} id="AboutMe">
-      <Row className="px-5 mx-5 w-100 h-100">
-        <Col xs="6" className="h-100">
+    <Container className="py-5 mt-5" style={{ height: "auto" }} id="AboutMe">
+      <Row className=" w-100 h-100">
+        <Col xs="12" md="8" lg="6" className="align-self-center">
           <h3 className="agdasima-bold fs-1">about me</h3>
           <p className="text-secondary agdasima-bold fs-5">
             I am FrontEnd Developer From Damietta, Egypt
@@ -21,15 +21,22 @@ function AboutMe() {
             to bring my skills and enthusiasm to a dynamic team!”
           </p>
         </Col>
-        <Col xs="6" className="h-100 align-self-start ">
-          <Row className="position-relative">
+        <Col
+          md="4"
+          lg="6"
+          className="h-100 align-self-start d-none d-md-block "
+        >
+          <div
+            className=" position-relative aboutImg"
+            style={{ width: "250px", height: "500px" }}
+          >
             <Image
               src={MyImg}
-              className="w-100 mb-5 position-absolute"
-              style={{ height: "80vh", top: "-100px" }}
+              className=" mb-5 d-block position-absolute"
+              style={{ top: "-13vh", left: "-50%", width: "200%" }}
               alt="AboutMe Image."
             />
-          </Row>
+          </div>
         </Col>
       </Row>
     </Container>

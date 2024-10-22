@@ -6,6 +6,7 @@ import ProgressBar from "react-bootstrap/ProgressBar";
 
 function Skills() {
   const progressBarRefs = useRef([]);
+  const [isMd, setIsMd] = useState(true);
   let skills = useMemo(
     () => [
       { skill: "HTML", progress: 90, color: "primary" }, // Blue
@@ -52,25 +53,41 @@ function Skills() {
     anime();
   }, [skills]);
 
+  useEffect(() => {
+    const checkPageSize = () => {
+      const width = window.innerWidth;
+      if (width <= 768) {
+        setIsMd(false);
+      } else {
+        setIsMd(true);
+      }
+    };
+
+    checkPageSize();
+    window.addEventListener("resize", checkPageSize);
+
+    return () => window.removeEventListener("resize", checkPageSize);
+  }, []);
+
   return (
     <Container
       id="Skills"
-      className="p-5 m-5"
-      style={{ height: "110vh", overflow: "hidden" }}
+      className="py-5 my-5"
+      style={{ height: "auto", overflow: "hidden" }}
     >
       <h2 className="text-center mb-2 fs-1">Skills</h2>
       <div className="text-center text-secondary mb-2 .agdasima-regular">
         That What I’m Good At.
       </div>
       <Row
-        className="justify-content-center mt-3 "
-        style={{ columnGap: "20px" }}
+        className="justify-content-center mt-3"
+        style={{ columnGap: "20px", rowGap: `${isMd === false && "20px"}` }}
       >
         {skills.map((el, index) => {
           return (
             <Col
               key={index}
-              xs="5"
+              md="5"
               className={`animated-element ${
                 index % 2 === 0 ? "animated-element-l" : "animated-element-r"
               }`}
@@ -78,8 +95,8 @@ function Skills() {
                 height: "50px",
                 borderRadius: "5px",
                 direction: `${index % 2 === 0 && "rtl"}`,
-                marginBottom: `${index % 2 === 0 && "50px"}`,
-                marginTop: `${index % 2 === 1 && "50px"}`,
+                marginBottom: `${isMd ? index % 2 === 0 && "50px" : "0"}`,
+                marginTop: `${isMd ? index % 2 === 1 && "50px" : "0"}`,
               }}
             >
               <Row className="align-items-center position-relative h-100 w-100">
@@ -91,8 +108,15 @@ function Skills() {
                   now={Progress[index]}
                   variant={el.color}
                   label={`${Progress[index]}%`}
-                  className="position-absolute progressBar left-0 top-0 h-100 w-100 p-0"
-                  style={{ zIndex: "-1" }}
+                  className={`position-absolute progressBar  left-0 top-0 h-100 ${
+                    isMd ? "w-100" : "w-75"
+                  } p-0`}
+                  style={{
+                    zIndex: "-1",
+                    backgroundColor: "var(--bs-gray-400)",
+                    // width: "600px",
+                    textWrap: "nowrap",
+                  }}
                 />
               </Row>
             </Col>

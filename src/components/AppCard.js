@@ -3,10 +3,10 @@ import { useInView } from "react-intersection-observer";
 import Card from "react-bootstrap/Card";
 import Row from "react-bootstrap/esm/Row";
 import { Link } from "react-router-dom";
-
+import { forwardRef } from "react";
 // Wrapping the component in forwardRef
-const AppCard = ({ title, repo, img }) => {
-  const { ref, inView } = useInView({
+const AppCard = forwardRef(({ title, repo, img }, ref) => {
+  const { inView } = useInView({
     triggerOnce: false,
     threshold: 0.05,
   });
@@ -51,6 +51,6 @@ const AppCard = ({ title, repo, img }) => {
       </Card>
     </CSSTransition>
   );
-};
+});
 
 export default AppCard;
