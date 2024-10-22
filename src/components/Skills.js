@@ -81,7 +81,7 @@ function Skills() {
       </div>
       <Row
         className="justify-content-center mt-3"
-        style={{ columnGap: "20px", rowGap: `${isMd === false && "20px"}` }}
+        style={{ columnGap: "20px", rowGap: `${isMd === false ? "20px" : ""}` }}
       >
         {skills.map((el, index) => {
           return (
