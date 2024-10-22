@@ -109,7 +109,7 @@ function Skills() {
                   variant={el.color}
                   label={`${Progress[index]}%`}
                   className={`position-absolute progressBar  left-0 top-0 h-100 ${
-                    isMd ? "w-100" : "w-75"
+                    isMd ? "w-100" : "w-100"
                   } p-0`}
                   style={{
                     zIndex: "-1",
